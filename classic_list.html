@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classic Movies Collection</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for a classic cinematic feel */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212; /* Deep Charcoal Background */
+        }
+        .poster-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        .poster-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(255, 204, 0, 0.2);
+        }
+        .text-golden {
+            color: #FFC300; /* Classic Gold accent */
+        }
+        /* Style for the subtle border around the poster */
+        .poster-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .poster-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 2 / 3; /* Standard movie poster ratio */
+        }
+    </style>
+</head>
+<body class="min-h-screen text-gray-100">
+
+    <!-- Header & Navigation (Consistent with other pages) -->
+    <header class="bg-black/90 shadow-lg sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-golden">
+                <a href="classic_list.html" class="hover:text-yellow-400 transition">Classic Movies Collection</a>
+            </h1>
+            <nav class="flex space-x-6">
+                <a href="classic_list.html" class="text-gray-300 hover:text-golden transition duration-200 p-2 rounded-lg">All Films</a>
+                <!--<a href="classic-movies.html" class="text-golden font-semibold bg-gray-800 px-3 py-2 rounded-lg shadow-inner">Classics</a>
+                <a href="movie-details.html" class="text-gray-300 hover:text-golden transition duration-200 p-2 rounded-lg">Details Example</a>-->
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        <!-- Hero Section/Intro Banner -->
+        <section class="mb-12 p-8 md:p-12 rounded-xl bg-gray-800/70 border-b-4 border-golden shadow-2xl">
+            <h2 class="text-5xl font-extrabold mb-3 text-white">The Golden Age of Cinema</h2>
+            <p class="text-lg text-gray-300 max-w-3xl">
+                A curated selection of timeless classics, defining masterpieces, and influential works from the early days of film history.
+            </p>
+            <div class="mt-4 flex flex-wrap gap-3">
+                <span class="text-sm font-medium bg-golden text-gray-900 px-3 py-1 rounded-full shadow-md">Pre-Code</span>
+                <span class="text-sm font-medium bg-gray-600 text-gray-100 px-3 py-1 rounded-full shadow-md">Film Noir</span>
+                <span class="text-sm font-medium bg-gray-600 text-gray-100 px-3 py-1 rounded-full shadow-md">Public Domain Gems</span>
+            </div>
+        </section>
+
+        <!-- Movie Filter/Sort Bar -->
+        <div class="mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 bg-gray-800/50 rounded-lg">
+            <h3 class="text-2xl font-semibold text-white mb-4 sm:mb-0">Found 24 Classics</h3>
+            <div class="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-4 w-full sm:w-auto">
+                <select class="bg-gray-700 text-white p-2 rounded-lg border border-gray-600 focus:ring-golden focus:border-golden transition w-full md:w-40">
+                    <option>Sort by Year (Newest)</option>
+                    <option>Sort by Year (Oldest)</option>
+                    <option>Sort by Title (A-Z)</option>
+                </select>
+                <select class="bg-gray-700 text-white p-2 rounded-lg border border-gray-600 focus:ring-golden focus:border-golden transition w-full md:w-40">
+                    <option>Filter by Decade</option>
+                    <option>1930s</option>
+                    <option>1940s</option>
+                    <option>1950s</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Movie Grid -->
+        <section id="classic_movie_list" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+
+            <!-- Movie Card Template 1 (Using Scarface example) -->
+            <a href="classic_details.html?id=royal_wedding" class="poster-card block bg-gray-800 rounded-lg overflow-hidden">
+                <div class="poster-container">
+                    <!-- Placeholder Image - Use actual movie poster URLs in production -->
+                    <img class="poster-image" src="images/royal wedding.jpg" alt="Poster for Scarface (1932)" onerror="this.onerror=null;this.src='https://placehold.co/200x300/1e293b/FFFFFF?text=Poster+Unavailable'">
+                </div>
+                <div class="p-3 text-center">
+                    <p class="text-sm font-semibold truncate text-white">Royal Wedding</p>
+                    <p class="text-xs text-gray-400">1932</p>
+                </div>
+            </a>
+
+            <!-- Movie Card Template 2 -->
+            <a href="classic_details.html?id=Calígula" class="poster-card block bg-gray-800 rounded-lg overflow-hidden">
+                <div class="poster-container">
+                    <img class="poster-image" src="images/Calígula.jpg" alt="Poster for Calígula 1979 " onerror="this.onerror=null;this.src='https://placehold.co/200x300/374151/FFFFFF?text=Poster+Unavailable'">
+                </div>
+                <div class="p-3 text-center">
+                    <p class="text-sm font-semibold truncate text-white">Calígula</p>
+                    <p class="text-xs text-gray-400">1927</p>
+                </div>
+            </a>
+
+            <!-- Movie Card Template 3 -->
+            <a href="movie-details.html?id=citizenkane1941" class="poster-card block bg-gray-800 rounded-lg overflow-hidden">
+                <div class="poster-container">
+                    <img class="poster-image" src="https://placehold.co/200x300/4b5563/FFFFFF?text=Citizen+Kane%0A(1941)" alt="Poster for Citizen Kane (1941)" onerror="this.onerror=null;this.src='https://placehold.co/200x300/4b5563/FFFFFF?text=Poster+Unavailable'">
+                </div>
+                <div class="p-3 text-center">
+                    <p class="text-sm font-semibold truncate text-white">Citizen Kane</p>
+                    <p class="text-xs text-gray-400">1941</p>
+                </div>
+            </a>
+
+            <!-- Movie Card Template 4 -->
+            <a href="movie-details.html?id=maltese_falcon1941" class="poster-card block bg-gray-800 rounded-lg overflow-hidden">
+                <div class="poster-container">
+                    <img class="poster-image" src="https://placehold.co/200x300/6b7280/FFFFFF?text=Maltese+Falcon%0A(1941)" alt="Poster for The Maltese Falcon (1941)" onerror="this.onerror=null;this.src='https://placehold.co/200x300/6b7280/FFFFFF?text=Poster+Unavailable'">
+                </div>
+                <div class="p-3 text-center">
+                    <p class="text-sm font-semibold truncate text-white">The Maltese Falcon</p>
+                    <p class="text-xs text-gray-400">1941</p>
+                </div>
+            </a>
+
+            <!-- Movie Card Template 5 -->
+            <a href="movie-details.html?id=casablanca1942" class="poster-card block bg-gray-800 rounded-lg overflow-hidden">
+                <div class="poster-container">
+                    <img class="poster-image" src="https://placehold.co/200x300/9ca3af/FFFFFF?text=Casablanca%0A(1942)" alt="Poster for Casablanca (1942)" onerror="this.onerror=null;this.src='https://placehold.co/200x300/9ca3af/FFFFFF?text=Poster+Unavailable'">
+                </div>
+                <div class="p-3 text-center">
+                    <p class="text-sm font-semibold truncate text-white">Casablanca</p>
+                    <p class="text-xs text-gray-400">1942</p>
+                </div>
+            </a>
+
+            <!-- Movie Card Template 6 -->
+            <a href="movie-details.html?id=thirdman1949" class="poster-card block bg-gray-800 rounded-lg overflow-hidden">
+                <div class="poster-container">
+                    <img class="poster-image" src="https://placehold.co/200x300/44403c/FFFFFF?text=The+Third+Man%0A(1949)" alt="Poster for The Third Man (1949)" onerror="this.onerror=null;this.src='https://placehold.co/200x300/44403c/FFFFFF?text=Poster+Unavailable'">
+                </div>
+                <div class="p-3 text-center">
+                    <p class="text-sm font-semibold truncate text-white">The Third Man</p>
+                    <p class="text-xs text-gray-400">1949</p>
+                </div>
+            </a>
+
+            <!-- Add more movie cards here... -->
+
+        </section>
+        
+        <!-- Pagination/Footer Navigation Example -->
+        <div class="mt-12 flex justify-center">
+            <nav class="flex space-x-2 p-3 bg-gray-800/50 rounded-lg shadow-inner">
+                <button class="px-4 py-2 text-gray-400 bg-gray-700/50 rounded-lg cursor-not-allowed" disabled>&larr; Previous</button>
+                <button class="px-4 py-2 text-gray-900 bg-golden font-bold rounded-lg shadow-md hover:bg-yellow-400 transition">1</button>
+                <button class="px-4 py-2 text-gray-300 bg-gray-700 rounded-lg hover:bg-gray-600 transition">2</button>
+                <button class="px-4 py-2 text-gray-300 bg-gray-700 rounded-lg hover:bg-gray-600 transition">3</button>
+                <button class="px-4 py-2 text-gray-300 bg-gray-700 rounded-lg hover:bg-gray-600 transition">Next &rarr;</button>
+            </nav>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-16 py-8 bg-black/90 border-t border-gray-700 text-center text-gray-500">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>&copy; 2025 CineVault. All rights reserved. | <a href="movies.html" class="hover:text-golden">Index</a> | <a href="#" class="hover:text-golden">Legal</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>
