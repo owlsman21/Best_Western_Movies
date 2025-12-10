@@ -46,25 +46,23 @@
 <body class="min-h-screen">
 
     <!-- Header & Navigation -->
-    <header class="bg-[#161b22] shadow-xl sticky top-0 z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <h1 class="text-3xl font-extrabold text-classic-blue">
-                <a href="classic_list.html" class="hover:text-sky-400 transition">Classic Vault</a>
-            </h1>
-            <nav class="flex space-x-6">
-                <a href="classic_list.html" class="text-gray-400 hover:text-classic-blue transition duration-200 p-2 rounded-lg">Catalog</a>
-            </nav>
-        </div>
-    </header>
+   <header class="bg-[#161b22] shadow-xl sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <h1 class="text-3xl font-extrabold text-classic-blue">
+                <a href="index.html" class="hover:text-sky-400 transition">Classic Vault</a>
+            </h1>
+            <nav class="flex space-x-6">
+                <a href="index.html" class="text-gray-400 hover:text-classic-blue transition duration-200 p-2 rounded-lg">Catalog</a>
+            </nav>
+        </div>
+    </header>
 
-    <!-- Main Content Area -->
-    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
-        <!-- Back Button -->
-        <a href="classic_list.html" class="flex items-center text-classic-blue hover:text-sky-400 mb-8 transition">
-            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-            Back to Catalog
-        </a>
+                <a href="index.html" class="flex items-center text-classic-blue hover:text-sky-400 mb-8 transition">
+            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            Back to Catalog
+        </a>
 
         <!-- Video Player Section (New) -->
         <section id="video-player-section" class="mb-8"></section>
@@ -83,46 +81,66 @@
     <script>
         // --- STEP 1: EMBEDDED DATA (SYNCHRONIZED) ---
         // NOTE: This data MUST match classic_list.html exactly, plus the videoEmbedHtml.
-        const CLASSIC_CATALOG = {
-            // --- Classic Films ---
-            'royal_wedding': {
-                title: "Royal Wedding",
-                year: 1951,
-                type: "Movie",
-                posterUrl: "images/royal wedding.jpg",
-                description: "A musical about a brother and sister dance team who travel to London during the 1947 Royal Wedding.",
-                detailsLink: "classic_details.html?id=royal_wedding", // Updated ID in the link
-                videoEmbedHtml: '<iframe src="https://ok.ru/videoembed/2015728306909" title="Royal Wedding (1951) Video Player" frameborder="0" allowfullscreen></iframe>'
+       // --- STEP 1: EMBEDDED DATA (SYNCHRONIZED) ---
+        // NOTE: This data MUST match classic_list.html exactly, plus the videoEmbedHtml.
+        const CLASSIC_CATALOG = {
+            
+            "Pat_Garrett_Billy_the_Kid": {
+                title: "Pat Garrett And Billy the Kid",
+                year: 1973,
+                type: "Western",
+                posterUrl: "./images/pat.jpg", 
+                description: "Pat Garrett is hired as a lawman on behalf of a group of wealthy New Mexico cattle barons to bring down his old friend Billy the Kid.",
+                videoEmbedHtml: '<iframe class="w-full h-full" src="https://ok.ru/videoembed/9886669802142" title="Pat Garrett & Billy the Kid (1973) Video Player" frameborder="0" allowfullscreen></iframe>'
             },
-            'Calígula': {
-                title: "Calígula",
+            
+            "Tombstone": {
+                title: "Tombstone",
+                year: 1993,
+                type: "Western", 
+                posterUrl:"./images/tombstone.jpg",
+                description: "A successful lawman's plans to retire anonymously in Tombstone, Arizona, are disrupted by the kind of outlaws he was famous for eliminating.",
+                videoEmbedHtml: '<iframe src="https://ok.ru/videoembed/9474456226462" title="Placeholder Video Player" frameborder="0" allowfullscreen></iframe>'
+            },
+            
+            "fort_apache_1": {
+                title: "Fort Apache (1)",
+                year: 1948,
+                type: "Western", 
+                posterUrl: "./images/apache.jpg",
+                description: "Colonel Oswald Turner, who serves as the commanding officer at Fort Apache, clashes with Captain Kirby York, his deputy, as the former wants to become popular in the Arizona outpost.",
+                videoEmbedHtml: '<iframe src="https://ok.ru/videoembed/8921373280921" title="Placeholder Video Player" frameborder="0" allowfullscreen></iframe>'
+            },
+            
+            "The_Frisco_Kid": {
+                title: "The Frisco Kid",
                 year: 1979,
-                type: "Movie",
-                posterUrl: "images/Calígula.jpg",
-                description: "A dramatization of the ascent to Caesar and subsequent reign of Caligula, one of the most notorious leaders of ancient Rome.",
-                detailsLink: "classic_details.html?id=Caligula",
-                // Placeholder for video embed demonstrating the feature.
-                videoEmbedHtml: '<iframe src="https://ok.ru/videoembed/9412093348547" title="Placeholder Video Player" frameborder="0" allowfullscreen></iframe>'
+                type: "Western Comedy",
+                posterUrl: "./images/frisco.jpg",
+                description: "A Polish rabbi wanders through the Old West on his way to lead a synagogue in San Francisco. On the way, he is nearly burned at the stake by Native Americans and almost killed by outlaws.",
+                videoEmbedHtml: '<iframe class="w-full h-full" src="https://ok.ru/videoembed/9347730246302" title="The Frisco" frameborder="0" allowfullscreen></iframe>'
             },
-            // --- Classic TV Series ---
-            'twilight_zone': {
-                title: "The Twilight Zone",
-                year: 1959,
-                type: "TV Series",
-                posterUrl: 'https://placehold.co/300x450/333333/FFD700?text=Twilight+Zone',
-                description: "A timeless anthology series of sci-fi, horror, and suspense.",
-                detailsLink: "classic_details.html?id=twilight_zone"
+            
+            "She_Wore_a_Yellow_Ribbon": {
+                title: "She Wore a Yellow Ribbon",
+                year: 1949,
+                type: "Western",
+                posterUrl: "./images/ribbon.jpg",
+                description: "Captain Nathan Brittles heads his last assignment before retirement to stop a Native American attack. But the job gets challenging when his superior instructs him to escort two women to safety.",
+                videoEmbedHtml: '<iframe class="w-full h-full" src="https://ok.ru/videoembed/8921446943385" title="Caligula Trailer" frameborder="0" allowfullscreen></iframe>'
             },
-            'mash': {
-                title: "M*A*S*H",
-                year: 1972,
-                type: "TV Series",
-                posterUrl: 'https://placehold.co/300x450/546E7A/EAEAEA?text=MASH',
-                description: "The staff of an Army hospital use humor to cope with the horrors of the Korean War.",
-                detailsLink: "classic_details.html?id=mash"
+            
+            "Support_Your_Local_Sheriff": {
+                title: "Support Your Local Sheriff",
+                year: 1969,
+                type: "Western",
+                posterUrl: "./images/support.jpg",
+                description: "In the old west, a man becomes a Sheriff just for the pay, figuring he can decamp if things get tough. In the end, he uses ingenuity instead.",
+                videoEmbedHtml: '<iframe class="w-full h-full" src="https://ok.ru/videoembed/9347718843038" title="Caligula Trailer" frameborder="0" allowfullscreen></iframe>'
             }
-        };
-        // -----------------------------
+        };
+        // -----------------------------
+        
 
         function getMovieIdFromUrl() {
             const params = new URLSearchParams(window.location.search);

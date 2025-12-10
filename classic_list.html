@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classic Movies Collection</title>
-    <!-- Load Tailwind CSS -->
+    <title>Western Movie Vault - Catalog</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Custom styles for a classic cinematic feel */
@@ -23,11 +22,6 @@
         .text-golden {
             color: #FFC300; /* Classic Gold accent */
         }
-        /* Style for the subtle border around the poster */
-        .poster-container {
-            position: relative;
-            overflow: hidden;
-        }
         .poster-image {
             width: 100%;
             height: 100%;
@@ -38,39 +32,33 @@
 </head>
 <body class="min-h-screen text-gray-100">
 
-    <!-- Header & Navigation (Consistent with other pages) -->
     <header class="bg-black/90 shadow-lg sticky top-0 z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <h1 class="text-3xl font-bold text-golden">
-                <a href="classic_list.html" class="hover:text-yellow-400 transition">Classic Movies Collection</a>
+                <a href="index.html" class="hover:text-yellow-400 transition">WESTERN MOVIE VAULT</a>
             </h1>
             <nav class="flex space-x-6">
-                <a href="classic_list.html" class="text-gray-300 hover:text-golden transition duration-200 p-2 rounded-lg">All Films</a>
-                <!--<a href="classic-movies.html" class="text-golden font-semibold bg-gray-800 px-3 py-2 rounded-lg shadow-inner">Classics</a>
-                <a href="movie-details.html" class="text-gray-300 hover:text-golden transition duration-200 p-2 rounded-lg">Details Example</a>-->
+                <a href="classic_list.html" class="text-golden font-semibold bg-gray-800 px-3 py-2 rounded-lg shadow-inner">All Westerns</a>
             </nav>
         </div>
     </header>
 
-    <!-- Main Content Area -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
-        <!-- Hero Section/Intro Banner -->
         <section class="mb-12 p-8 md:p-12 rounded-xl bg-gray-800/70 border-b-4 border-golden shadow-2xl">
-            <h2 class="text-5xl font-extrabold mb-3 text-white">The Golden Age of Cinema</h2>
+            <h2 class="text-5xl font-extrabold mb-3 text-white">Classic Westerns Collection</h2>
             <p class="text-lg text-gray-300 max-w-3xl">
-                A curated selection of timeless classics, defining masterpieces, and influential works from the early days of film history.
+                A definitive collection of iconic films from the Golden Age of Western Cinema.
             </p>
             <div class="mt-4 flex flex-wrap gap-3">
-                <span class="text-sm font-medium bg-golden text-gray-900 px-3 py-1 rounded-full shadow-md">Pre-Code</span>
-                <span class="text-sm font-medium bg-gray-600 text-gray-100 px-3 py-1 rounded-full shadow-md">Film Noir</span>
-                <span class="text-sm font-medium bg-gray-600 text-gray-100 px-3 py-1 rounded-full shadow-md">Public Domain Gems</span>
+                <span class="text-sm font-medium bg-golden text-gray-900 px-3 py-1 rounded-full shadow-md">John Wayne</span>
+                <span class="text-sm font-medium bg-gray-600 text-gray-100 px-3 py-1 rounded-full shadow-md">Spaghetti Westerns</span>
+                <span class="text-sm font-medium bg-gray-600 text-gray-100 px-3 py-1 rounded-full shadow-md">Comedy Westerns</span>
             </div>
         </section>
 
-        <!-- Movie Filter/Sort Bar -->
         <div class="mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 bg-gray-800/50 rounded-lg">
-            <h3 class="text-2xl font-semibold text-white mb-4 sm:mb-0">Found 24 Classics</h3>
+            <h3 id="movie-count" class="text-2xl font-semibold text-white mb-4 sm:mb-0">Found 6 Classics</h3>
             <div class="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-4 w-full sm:w-auto">
                 <select class="bg-gray-700 text-white p-2 rounded-lg border border-gray-600 focus:ring-golden focus:border-golden transition w-full md:w-40">
                     <option>Sort by Year (Newest)</option>
@@ -79,106 +67,123 @@
                 </select>
                 <select class="bg-gray-700 text-white p-2 rounded-lg border border-gray-600 focus:ring-golden focus:border-golden transition w-full md:w-40">
                     <option>Filter by Decade</option>
-                    <option>1930s</option>
                     <option>1940s</option>
-                    <option>1950s</option>
+                    <option>1960s</option>
+                    <option>1970s</option>
                 </select>
             </div>
         </div>
 
-        <!-- Movie Grid -->
         <section id="classic_movie_list" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
-
-            <!-- Movie Card Template 1 (Using Scarface example) -->
-            <a href="classic_details.html?id=royal_wedding" class="poster-card block bg-gray-800 rounded-lg overflow-hidden">
-                <div class="poster-container">
-                    <!-- Placeholder Image - Use actual movie poster URLs in production -->
-                    <img class="poster-image" src="images/royal wedding.jpg" alt="Poster for Scarface (1932)" onerror="this.onerror=null;this.src='https://placehold.co/200x300/1e293b/FFFFFF?text=Poster+Unavailable'">
-                </div>
-                <div class="p-3 text-center">
-                    <p class="text-sm font-semibold truncate text-white">Royal Wedding</p>
-                    <p class="text-xs text-gray-400">1932</p>
-                </div>
-            </a>
-
-            <!-- Movie Card Template 2 -->
-            <a href="classic_details.html?id=Calígula" class="poster-card block bg-gray-800 rounded-lg overflow-hidden">
-                <div class="poster-container">
-                    <img class="poster-image" src="images/Calígula.jpg" alt="Poster for Calígula 1979 " onerror="this.onerror=null;this.src='https://placehold.co/200x300/374151/FFFFFF?text=Poster+Unavailable'">
-                </div>
-                <div class="p-3 text-center">
-                    <p class="text-sm font-semibold truncate text-white">Calígula</p>
-                    <p class="text-xs text-gray-400">1927</p>
-                </div>
-            </a>
-
-            <!-- Movie Card Template 3 -->
-            <a href="movie-details.html?id=citizenkane1941" class="poster-card block bg-gray-800 rounded-lg overflow-hidden">
-                <div class="poster-container">
-                    <img class="poster-image" src="https://placehold.co/200x300/4b5563/FFFFFF?text=Citizen+Kane%0A(1941)" alt="Poster for Citizen Kane (1941)" onerror="this.onerror=null;this.src='https://placehold.co/200x300/4b5563/FFFFFF?text=Poster+Unavailable'">
-                </div>
-                <div class="p-3 text-center">
-                    <p class="text-sm font-semibold truncate text-white">Citizen Kane</p>
-                    <p class="text-xs text-gray-400">1941</p>
-                </div>
-            </a>
-
-            <!-- Movie Card Template 4 -->
-            <a href="movie-details.html?id=maltese_falcon1941" class="poster-card block bg-gray-800 rounded-lg overflow-hidden">
-                <div class="poster-container">
-                    <img class="poster-image" src="https://placehold.co/200x300/6b7280/FFFFFF?text=Maltese+Falcon%0A(1941)" alt="Poster for The Maltese Falcon (1941)" onerror="this.onerror=null;this.src='https://placehold.co/200x300/6b7280/FFFFFF?text=Poster+Unavailable'">
-                </div>
-                <div class="p-3 text-center">
-                    <p class="text-sm font-semibold truncate text-white">The Maltese Falcon</p>
-                    <p class="text-xs text-gray-400">1941</p>
-                </div>
-            </a>
-
-            <!-- Movie Card Template 5 -->
-            <a href="movie-details.html?id=casablanca1942" class="poster-card block bg-gray-800 rounded-lg overflow-hidden">
-                <div class="poster-container">
-                    <img class="poster-image" src="https://placehold.co/200x300/9ca3af/FFFFFF?text=Casablanca%0A(1942)" alt="Poster for Casablanca (1942)" onerror="this.onerror=null;this.src='https://placehold.co/200x300/9ca3af/FFFFFF?text=Poster+Unavailable'">
-                </div>
-                <div class="p-3 text-center">
-                    <p class="text-sm font-semibold truncate text-white">Casablanca</p>
-                    <p class="text-xs text-gray-400">1942</p>
-                </div>
-            </a>
-
-            <!-- Movie Card Template 6 -->
-            <a href="movie-details.html?id=thirdman1949" class="poster-card block bg-gray-800 rounded-lg overflow-hidden">
-                <div class="poster-container">
-                    <img class="poster-image" src="https://placehold.co/200x300/44403c/FFFFFF?text=The+Third+Man%0A(1949)" alt="Poster for The Third Man (1949)" onerror="this.onerror=null;this.src='https://placehold.co/200x300/44403c/FFFFFF?text=Poster+Unavailable'">
-                </div>
-                <div class="p-3 text-center">
-                    <p class="text-sm font-semibold truncate text-white">The Third Man</p>
-                    <p class="text-xs text-gray-400">1949</p>
-                </div>
-            </a>
-
-            <!-- Add more movie cards here... -->
-
-        </section>
+            </section>
         
-        <!-- Pagination/Footer Navigation Example -->
         <div class="mt-12 flex justify-center">
             <nav class="flex space-x-2 p-3 bg-gray-800/50 rounded-lg shadow-inner">
                 <button class="px-4 py-2 text-gray-400 bg-gray-700/50 rounded-lg cursor-not-allowed" disabled>&larr; Previous</button>
                 <button class="px-4 py-2 text-gray-900 bg-golden font-bold rounded-lg shadow-md hover:bg-yellow-400 transition">1</button>
-                <button class="px-4 py-2 text-gray-300 bg-gray-700 rounded-lg hover:bg-gray-600 transition">2</button>
-                <button class="px-4 py-2 text-gray-300 bg-gray-700 rounded-lg hover:bg-gray-600 transition">3</button>
                 <button class="px-4 py-2 text-gray-300 bg-gray-700 rounded-lg hover:bg-gray-600 transition">Next &rarr;</button>
             </nav>
         </div>
 
     </main>
 
-    <!-- Footer -->
     <footer class="mt-16 py-8 bg-black/90 border-t border-gray-700 text-center text-gray-500">
         <div class="max-w-7xl mx-auto px-4">
-            <p>&copy; 2025 CineVault. All rights reserved. | <a href="movies.html" class="hover:text-golden">Index</a> | <a href="#" class="hover:text-golden">Legal</a></p>
+            <p>&copy; 2025 Western Movie Vault. All rights reserved.</p>
         </div>
     </footer>
 
-</body>
+
+    <script>
+    (function() {
+        
+        // ===========================================
+        // === MOVIE DATA CATALOG (6 Westerns) ===
+        // ===========================================
+        const CLASSIC_CATALOG = {
+        
+            "Pat_Garrett_Billy_the_Kid": {
+                title: "Pat Garrett And Billy the Kid",
+                year: 1973,
+                type: "Western",
+                posterUrl: "./images/pat.jpg", 
+                description: "Pat Garrett is hired as a lawman on behalf of a group of wealthy New Mexico cattle barons to bring down his old friend Billy the Kid.",
+                videoEmbedHtml: '<iframe class="w-full h-full" src="https://ok.ru/videoembed/9886669802142" title="Pat Garrett & Billy the Kid (1973) Video Player" frameborder="0" allowfullscreen></iframe>'
+            },
+            
+            "Tombstone": {
+                title: "Tombstone",
+                year: 1993,
+                type: "Western", 
+                posterUrl:"./images/tombstone.jpg",
+                description: "A successful lawman's plans to retire anonymously in Tombstone, Arizona, are disrupted by the kind of outlaws he was famous for eliminating.",
+                videoEmbedHtml: '<iframe src="https://ok.ru/videoembed/9474456226462" title="Placeholder Video Player" frameborder="0" allowfullscreen></iframe>'
+            },
+            
+            "fort_apache_1": {
+                title: "Fort Apache (1)",
+                year: 1948,
+                type: "Western", 
+                posterUrl: "./images/apache.jpg",
+                description: "Colonel Oswald Turner, who serves as the commanding officer at Fort Apache, clashes with Captain Kirby York, his deputy, as the former wants to become popular in the Arizona outpost.",
+                videoEmbedHtml: '<iframe src="https://ok.ru/videoembed/8921373280921" title="Placeholder Video Player" frameborder="0" allowfullscreen></iframe>'
+            },
+            
+            "The_Frisco_Kid": {
+                title: "The Frisco Kid",
+                year: 1979,
+                type: "Western Comedy",
+                posterUrl: "./images/frisco.jpg",
+                description: "A Polish rabbi wanders through the Old West on his way to lead a synagogue in San Francisco. On the way, he is nearly burned at the stake by Native Americans and almost killed by outlaws.",
+                videoEmbedHtml: '<iframe class="w-full h-full" src="https://ok.ru/videoembed/9347730246302" title="The Frisco" frameborder="0" allowfullscreen></iframe>'
+            },
+            
+            "She_Wore_a_Yellow_Ribbon": {
+                title: "She Wore a Yellow Ribbon",
+                year: 1949,
+                type: "Western",
+                posterUrl: "./images/ribbon.jpg",
+                description: "Captain Nathan Brittles heads his last assignment before retirement to stop a Native American attack. But the job gets challenging when his superior instructs him to escort two women to safety.",
+                videoEmbedHtml: '<iframe class="w-full h-full" src="https://ok.ru/videoembed/8921446943385" title="Caligula Trailer" frameborder="0" allowfullscreen></iframe>'
+            },
+            
+            "Support_Your_Local_Sheriff": {
+                title: "Support Your Local Sheriff",
+                year: 1969,
+                type: "Western",
+                posterUrl: "./images/support.jpg",
+                description: "In the old west, a man becomes a Sheriff just for the pay, figuring he can decamp if things get tough. In the end, he uses ingenuity instead.",
+                videoEmbedHtml: '<iframe class="w-full h-full" src="https://ok.ru/videoembed/9347718843038" title="Caligula Trailer" frameborder="0" allowfullscreen></iframe>'
+            }
+        
+        }; // End of CLASSIC_CATALOG
+        // ===========================================
+        // === MOVIE LIST RENDERING FUNCTIONALITY ===
+        // ===========================================
+        const movieGrid = document.getElementById('classic_movie_list'); 
+
+        if (movieGrid) {
+            for (const id in CLASSIC_CATALOG) {
+                if (CLASSIC_CATALOG.hasOwnProperty(id)) {
+                    const movie = CLASSIC_CATALOG[id];
+                    
+                    const movieCardHtml = `
+                        <a href="classic_details.html?id=${id}" class="poster-card block bg-gray-900 rounded-lg overflow-hidden border border-gray-700 hover:border-golden">
+                            <div class="poster-container">
+                                <img class="poster-image" src="${movie.posterUrl}" alt="Poster for ${movie.title}" onerror="this.onerror=null;this.src='./images/poster-unavailable.jpg'">
+                            </div>
+                            <div class="p-3 text-center">
+                                <p class="text-sm font-semibold truncate text-white">${movie.title}</p>
+                                <p class="text-xs text-gray-400">${movie.year}</p>
+                            </div>
+                        </a>
+                    `;
+                    movieGrid.insertAdjacentHTML('beforeend', movieCardHtml);
+                }
+            }
+        }
+
+    })();
+    </script>
+    </body>
 </html>
