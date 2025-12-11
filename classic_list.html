@@ -28,6 +28,11 @@
             object-fit: cover;
             aspect-ratio: 2 / 3; /* Standard movie poster ratio */
         }
+        /* Style for disabled pagination button */
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body class="min-h-screen text-gray-100">
@@ -58,13 +63,15 @@
         </section>
 
         <div class="mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 bg-gray-800/50 rounded-lg">
-            <h3 id="movie-count" class="text-2xl font-semibold text-white mb-4 sm:mb-0">Found 6 Classics</h3>
+            <h3 id="movie-count" class="text-2xl font-semibold text-white mb-4 sm:mb-0">Loading Classics...</h3>
             <div class="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-4 w-full sm:w-auto">
-                <select class="bg-gray-700 text-white p-2 rounded-lg border border-gray-600 focus:ring-golden focus:border-golden transition w-full md:w-40">
-                    <option>Sort by Year (Newest)</option>
-                    <option>Sort by Year (Oldest)</option>
-                    <option>Sort by Title (A-Z)</option>
+                
+                <select id="sort-selector" class="bg-gray-700 text-white p-2 rounded-lg border border-gray-600 focus:ring-golden focus:border-golden transition w-full md:w-40">
+                    <option value="year-desc">Sort by Year (Newest)</option>
+                    <option value="year-asc">Sort by Year (Oldest)</option>
+                    <option value="title-asc">Sort by Title (A-Z)</option>
                 </select>
+                
                 <select class="bg-gray-700 text-white p-2 rounded-lg border border-gray-600 focus:ring-golden focus:border-golden transition w-full md:w-40">
                     <option>Filter by Decade</option>
                     <option>1940s</option>
@@ -78,11 +85,8 @@
             </section>
         
         <div class="mt-12 flex justify-center">
-            <nav class="flex space-x-2 p-3 bg-gray-800/50 rounded-lg shadow-inner">
-                <button class="px-4 py-2 text-gray-400 bg-gray-700/50 rounded-lg cursor-not-allowed" disabled>&larr; Previous</button>
-                <button class="px-4 py-2 text-gray-900 bg-golden font-bold rounded-lg shadow-md hover:bg-yellow-400 transition">1</button>
-                <button class="px-4 py-2 text-gray-300 bg-gray-700 rounded-lg hover:bg-gray-600 transition">Next &rarr;</button>
-            </nav>
+            <nav id="pagination-container" class="flex space-x-2 p-3 bg-gray-800/50 rounded-lg shadow-inner">
+                </nav>
         </div>
 
     </main>
@@ -98,10 +102,9 @@
     (function() {
         
         // ===========================================
-        // === MOVIE DATA CATALOG (6 Westerns) ===
+        // === MOVIE DATA CATALOG (13 Westerns) ===
         // ===========================================
         const CLASSIC_CATALOG = {
-        
             "Pat_Garrett_Billy_the_Kid": {
                 title: "Pat Garrett And Billy the Kid",
                 year: 1973,
@@ -154,34 +157,263 @@
                 posterUrl: "./images/support.jpg",
                 description: "In the old west, a man becomes a Sheriff just for the pay, figuring he can decamp if things get tough. In the end, he uses ingenuity instead.",
                 videoEmbedHtml: '<iframe class="w-full h-full" src="https://ok.ru/videoembed/9347718843038" title="Caligula Trailer" frameborder="0" allowfullscreen></iframe>'
-            }
-        
+            },
+            "The_Spikes_Gang": {
+                title: "The Spikes Gang",
+                year: 1974,
+                type: "Western",
+                posterUrl: "./images/spikes.jpg",
+                description: "Three farm boys in the Old West help a wounded bank robber who teaches them the trade.",
+                videoEmbedHtml: '<iframe class="w-full h-full" src="https://ok.ru/videoembed/9104458058398" title="Caligula Trailer" frameborder="0" allowfullscreen></iframe>'
+            },
+            "Chisum": {
+                title: "Chisum",
+                year: 1970,
+                type: "Western",
+                posterUrl: "./images/Chisum.jpg",
+                description: "Cattle baron John Chisum joins forces with Billy the Kid and Pat Garrett to fight the Lincoln County land war.",
+                videoEmbedHtml: '<iframe class="w-full h-full" src="https://ok.ru/videoembed/9099003759262" title="Caligula Trailer" frameborder="0" allowfullscreen></iframe>'
+            },
+            "One_Little_Indian": {
+                title: "One Little Indian",
+                year: 1973,
+                type: "Western",
+                posterUrl: "./images/one.jpg",
+                description: "On the run from the Cavalry, a man tries to disappear while accompanied by two camels and a runaway boy. ",
+                videoEmbedHtml: '<iframe class="w-full h-full" src="https://ok.ru/videoembed/10160284699174" title="Caligula Trailer" frameborder="0" allowfullscreen></iframe>'
+            },
+            "Cottonmouth": {
+                title: "Cottonmouth",
+                year: 2025,
+                type: "Western",
+                posterUrl: "./images/cotton.jpg",
+                description: "When Ed Dantes is framed and condemned to the tortures of a territorial prison in 1895, he must learn the ways of the outlaw to escape and exact his revenge.",
+                videoEmbedHtml: '<iframe class="w-full h-full" src="https://ok.ru/videoembed/9878848735782" title="Caligula Trailer" frameborder="0" allowfullscreen></iframe>'
+            },
+            "Rust": {
+                title: "Rust",
+                year: 2024,
+                type: "Western",
+                posterUrl: "./images/Rust.jpg",
+                description: "An orphaned boy of 13 left to fend for himself and his younger brother in 1880s Wyoming is sentenced to hang for the accidental killing of a local rancher. His estranged grandfather breaks him out of jail and they go on the run to Mexico.",
+                videoEmbedHtml: '<iframe class="w-full h-full" src="https://ok.ru/videoembed/9453161351718" title="Caligula Trailer" frameborder="0" allowfullscreen></iframe>'
+            },
+            "Night_of_the_Tommyknockers": {
+                title: "Night of the Tommyknockers",
+                year: 2022,
+                type: "Western",
+                posterUrl: "./images/tommy.jpg",
+                description: "When miners blast for gold in the 1870's, they accidentally release ancient creatures known as Tommyknockers. The town of Deer Creek, Nevada is soon under siege with only a handful of survivors held up in the local saloon.",
+                videoEmbedHtml: '<iframe class="w-full h-full" src="https://ok.ru/videoembed/9273472846374" title="Caligula Trailer" frameborder="0" allowfullscreen></iframe>'
+            },
+            "The_Thicket": {
+                title: "The Thicket",
+                year:2024,
+                type: "Western",
+                posterUrl: "./images/thicket.jpg",
+                description: "When a bounty hunter and a band of unlikely heroes pursue a brutal killer, they find themselves in a deadly no-man's-land known as The Thicket.",
+                videoEmbedHtml: '<iframe class="w-full h-full" src="https://ok.ru/videoembed/136509291046" title="Caligula Trailer" frameborder="0" allowfullscreen></iframe>'
+            },
+             "Hard_Bounty": {
+                title: "Hard Bounty",
+                year:1995,
+                type: "Western",
+                posterUrl: "./images/hard.jpg",
+                description: "Kanning is an ex-bounty hunter who decides to buy the town saloon where Donnie works as a whore. Carver, who has a bad history with Kanning from his bounty hunting days, rides into town to register some land deeds.",
+                videoEmbedHtml: '<iframe class="w-full h-full" src="https://ok.ru/videoembed/8974781123110" title="Caligula Trailer" frameborder="0" allowfullscreen></iframe>'
+            },
+             "Stagecoach_COLORIZED ": {
+                title: "Stagecoach_COLORIZED",
+                year:1939,
+                type: "Western",
+                posterUrl: "./images/stage.jpg",
+                description: "A group of people traveling on a stagecoach find their journey complicated by the threat of Geronimo and learn something about each other in the process.",
+                videoEmbedHtml: '<iframe class="w-full h-full" src="https://ok.ru/videoembed/7794790500902" title="Caligula Trailer" frameborder="0" allowfullscreen></iframe>'
+            },
+             "From_Noon_Till_Three": {
+                title: "From Noon Till Three",
+                year:1976,
+                type: "Western",
+                posterUrl: "./images/noon.jpg",
+                description: "A beautiful widow profits from a fling with an outlaw.",
+                videoEmbedHtml: '<iframe class="w-full h-full" src="https://ok.ru/videoembed/7618577041958" title="Caligula Trailer" frameborder="0" allowfullscreen></iframe>'
+            },
+             "Coyote_Woman": {
+                title: "Coyote Woman (2024)",
+                year:2024,
+                type: "Western",
+                posterUrl: "./images/coy.jpg",
+                description: "For the first time on screen: Real-life scalp hunters JJ Glanton and Judge Holden from the novel Blood Meridian. Cynthia is a captive turned Comanche Woman. She lives with the last free band until they cross ways with savage scalp hunters.",
+                videoEmbedHtml: '<iframe class="w-full h-full" src="https://ok.ru/videoembed/7540624001574" title="Caligula Trailer" frameborder="0" allowfullscreen></iframe>'
+            },
+             "Blazing Saddles": {
+                title: "Blazing Saddles",
+                year:1974,
+                type: "Western Comedy",
+                posterUrl: "./images/blaz.jpg",
+                description: "In order to ruin a western town and steal their land, a corrupt politician appoints a black sheriff, who promptly becomes his most formidable adversary.",
+                videoEmbedHtml: '<iframe class="w-full h-full" src="https://ok.ru/videoembed/7502168066598" title="Caligula Trailer" frameborder="0" allowfullscreen></iframe>'
+            },
+             "Young_Guns": {
+                title: "Young Guns",
+                year:1988,
+                type: "Western",
+                posterUrl: "./images/young guns.jpg",
+                description: "A group of young gunmen, led by Billy the Kid, become deputies to avenge the murder of the rancher who became their benefactor. But when Billy takes their authority too far, they become the hunted.",
+                videoEmbedHtml: '<iframe class="w-full h-full" src="https://ok.ru/videoembed/7463099435558" title="Caligula Trailer" frameborder="0" allowfullscreen></iframe>'
+            },
+
         }; // End of CLASSIC_CATALOG
         // ===========================================
-        // === MOVIE LIST RENDERING FUNCTIONALITY ===
-        // ===========================================
-        const movieGrid = document.getElementById('classic_movie_list'); 
+        
+        // === PAGINATION & SORTING VARIABLES ===
+        const MOVIES_PER_PAGE = 12;
+        let currentPage = 1;
+        let currentSort = 'year-desc'; // Default: Newest first
 
-        if (movieGrid) {
-            for (const id in CLASSIC_CATALOG) {
-                if (CLASSIC_CATALOG.hasOwnProperty(id)) {
-                    const movie = CLASSIC_CATALOG[id];
-                    
-                    const movieCardHtml = `
-                        <a href="classic_details.html?id=${id}" class="poster-card block bg-gray-900 rounded-lg overflow-hidden border border-gray-700 hover:border-golden">
-                            <div class="poster-container">
-                                <img class="poster-image" src="${movie.posterUrl}" alt="Poster for ${movie.title}" onerror="this.onerror=null;this.src='./images/poster-unavailable.jpg'">
-                            </div>
-                            <div class="p-3 text-center">
-                                <p class="text-sm font-semibold truncate text-white">${movie.title}</p>
-                                <p class="text-xs text-gray-400">${movie.year}</p>
-                            </div>
-                        </a>
-                    `;
-                    movieGrid.insertAdjacentHTML('beforeend', movieCardHtml);
+        const movieGrid = document.getElementById('classic_movie_list');
+        const movieCountElement = document.getElementById('movie-count');
+        const paginationContainer = document.getElementById('pagination-container');
+        const sortSelector = document.getElementById('sort-selector'); // Get the new sort element
+
+        // Function to get movie keys and sort them based on the current criteria
+        function getSortedMovieKeys(catalog, sortType) {
+            let keys = Object.keys(catalog);
+            
+            keys.sort((a, b) => {
+                const movieA = catalog[a];
+                const movieB = catalog[b];
+
+                if (sortType === 'year-asc') {
+                    // Sort by year: Oldest first (ascending)
+                    return movieA.year - movieB.year;
+                } else if (sortType === 'year-desc') {
+                    // Sort by year: Newest first (descending)
+                    return movieB.year - movieA.year;
+                } else if (sortType === 'title-asc') {
+                    // Sort by title: A-Z (ascending)
+                    const titleA = movieA.title.toUpperCase();
+                    const titleB = movieB.title.toUpperCase();
+                    if (titleA < titleB) return -1;
+                    if (titleA > titleB) return 1;
+                    return 0;
+                }
+                return 0; // Default: no change
+            });
+            
+            return keys;
+        }
+
+        // Initialize sorted keys and calculate total pages
+        let sortedMovieKeys = getSortedMovieKeys(CLASSIC_CATALOG, currentSort);
+        const totalMovies = sortedMovieKeys.length;
+        const totalPages = Math.ceil(totalMovies / MOVIES_PER_PAGE);
+
+        // --- Core Rendering Function (Handles Pagination) ---
+        function renderMovies() {
+            // 1. Calculate the start and end indices for the current page
+            const startIndex = (currentPage - 1) * MOVIES_PER_PAGE;
+            const endIndex = startIndex + MOVIES_PER_PAGE;
+            
+            // Get the keys for the 12 movies we want to display
+            const moviesToShowKeys = sortedMovieKeys.slice(startIndex, endIndex);
+
+            movieGrid.innerHTML = ''; // Clear the grid before rendering new content
+
+            // 2. Loop only through the selected 12 movies
+            moviesToShowKeys.forEach(id => {
+                const movie = CLASSIC_CATALOG[id];
+                
+                const movieCardHtml = `
+                    <a href="classic_details.html?id=${id}" class="poster-card block bg-gray-900 rounded-lg overflow-hidden border border-gray-700 hover:border-golden">
+                        <div class="poster-container">
+                            <img class="poster-image" src="${movie.posterUrl}" alt="Poster for ${movie.title}" onerror="this.onerror=null;this.src='./images/poster-unavailable.jpg'">
+                        </div>
+                        <div class="p-3 text-center">
+                            <p class="text-sm font-semibold truncate text-white">${movie.title}</p>
+                            <p class="text-xs text-gray-400">${movie.year}</p>
+                        </div>
+                    </a>
+                `;
+                movieGrid.insertAdjacentHTML('beforeend', movieCardHtml);
+            });
+
+            // 3. Update the Count and Pagination
+            if (movieCountElement) {
+                const displayedCount = moviesToShowKeys.length;
+                const startDisplay = startIndex + 1;
+                const endDisplay = startIndex + displayedCount;
+                
+                if (totalMovies === 0) {
+                    movieCountElement.textContent = "No Classics Found";
+                } else if (totalPages === 1) {
+                    movieCountElement.textContent = `Found ${totalMovies} Classics`;
+                } else {
+                    movieCountElement.textContent = `Showing ${startDisplay}-${endDisplay} of ${totalMovies} Classics`;
                 }
             }
+            renderPagination();
         }
+
+        // --- Pagination Button Drawing Function ---
+        function renderPagination() {
+            if (!paginationContainer || totalPages <= 1) {
+                // Clear container if no pagination is needed
+                paginationContainer.innerHTML = '';
+                return;
+            }
+
+            let paginationHtml = '';
+
+            // Previous Button
+            paginationHtml += `
+                <button data-page="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''} 
+                    class="pagination-btn px-4 py-2 text-gray-400 bg-gray-700/50 rounded-lg ${currentPage === 1 ? 'cursor-not-allowed' : 'hover:bg-gray-600 transition'}">&larr; Previous</button>
+            `;
+
+            // Page Number Buttons
+            for (let i = 1; i <= totalPages; i++) {
+                paginationHtml += `
+                    <button data-page="${i}" 
+                        class="pagination-btn px-4 py-2 ${i === currentPage ? 'text-gray-900 bg-golden font-bold shadow-md' : 'text-gray-300 bg-gray-700 hover:bg-gray-600'} rounded-lg transition">${i}</button>
+                `;
+            }
+
+            // Next Button
+            paginationHtml += `
+                <button data-page="${currentPage + 1}" ${currentPage === totalPages ? 'disabled' : ''} 
+                    class="pagination-btn px-4 py-2 text-gray-400 bg-gray-700/50 rounded-lg ${currentPage === totalPages ? 'cursor-not-allowed' : 'hover:bg-gray-600 transition'}">Next &rarr;</button>
+            `;
+
+            paginationContainer.innerHTML = paginationHtml;
+            
+            // Add click listeners to all new buttons
+            paginationContainer.querySelectorAll('.pagination-btn').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    if (!event.target.disabled) {
+                        const newPage = parseInt(event.target.dataset.page);
+                        currentPage = newPage;
+                        renderMovies();
+                        window.scrollTo(0, 0); // Scroll to top on page change
+                    }
+                });
+            });
+        }
+
+        // --- Event Listener for Sorting ---
+        if (sortSelector) {
+            sortSelector.addEventListener('change', (event) => {
+                currentSort = event.target.value; // Update the sort criteria
+                // Recalculate and re-sort the master list of keys
+                sortedMovieKeys = getSortedMovieKeys(CLASSIC_CATALOG, currentSort); 
+                currentPage = 1; // Always reset to the first page when sorting
+                renderMovies(); // Re-render the movies and pagination
+            });
+        }
+
+
+        // Run the rendering function when the page loads
+        document.addEventListener('DOMContentLoaded', renderMovies);
 
     })();
     </script>

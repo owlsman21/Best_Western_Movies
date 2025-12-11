@@ -9,54 +9,72 @@
         /* Custom styles for a classic cinematic feel */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #121212; /* Deep Charcoal Background */
-            color: #E2E8F0;
+            
+            /* 1. Set the background image using the correct path and name */
+            background-image: url('./images/western3.WEBP'); 
+            
+            /* 2. Ensure the image covers the entire screen without stretching */
+            background-size: cover; 
+            
+            /* 3. Center the image horizontally and vertically */
+            background-position: center center; 
+            
+            /* 4. Fix the image so it doesn't scroll with the content */
+            background-attachment: fixed; 
+            
+            /* Fallback color if image fails to load */
+            background-color: #121212; 
         }
         .text-golden {
             color: #FFC300; /* Classic Gold accent */
         }
-        .dark-card {
-            background-color: #1a1f25; /* Dark card background */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
-        }
-        .hero-background {
-            /* Optional: Add a subtle background texture or image later */
-            /* background-image: url('path/to/texture.jpg'); */
-            background-size: cover;
-            background-position: center;
+        
+        /* Ensures content is above the background and maintains the correct layout */
+        .overlay-content {
+            position: relative;
+            z-index: 10;
         }
     </style>
 </head>
-<body class="min-h-screen">
+<body class="min-h-screen text-gray-100">
 
-   <header class="bg-gray-900 shadow-md">
-        <div class="container mx-auto py-4 px-4 flex justify-between items-center">
-            <h1 class="text-3xl font-extrabold text-golden">WESTERN MOVIE VAULT</h1>
-            <a href="classic_list.html" class="inline-block bg-yellow-600 text-gray-900 font-bold py-2 px-4 rounded-lg hover:bg-yellow-500 transition shadow-lg">
-                Explore Westerns
-            </a>
+    <header class="bg-black/90 shadow-lg sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-golden">
+                <a href="index.html" class="hover:text-yellow-400 transition">WESTERN MOVIE VAULT</a>
+            </h1>
+            <nav class="flex space-x-6">
+                <a href="classic_list.html" class="text-golden font-semibold bg-gray-800 px-3 py-2 rounded-lg shadow-inner">All Westerns</a>
+            </nav>
         </div>
     </header>
 
-    <main class="container mx-auto px-4 py-16 hero-background">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 min-h-[80vh] flex items-center justify-center overlay-content">
         
-        <div class="dark-card p-10 md:p-20 rounded-xl max-w-4xl mx-auto text-center mt-20">
-            <h2 class="text-6xl font-extrabold text-white mb-4">
-                Best Western Movies
-            </h2>
-            <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-10">
-                A comprehensive collection of iconic Western movies and defining cinematic works.
+        <div class="p-12 md:p-16 rounded-xl text-center max-w-xl bg-black/70 shadow-2xl backdrop-blur-sm">
+            
+            <h2 class="text-5xl md:text-6xl font-extrabold mb-4 text-white">Best Western Movies</h2>
+            
+            <p class="text-lg text-gray-300 mb-8">
+                A comprehensive collection of iconic Western movies and defining cinematic works, from the earliest silent films to modern genre interpretations.
             </p>
             
-            <a href="classic_list.html" class="px-8 py-4 bg-yellow-600 text-gray-900 font-bold text-xl rounded-lg hover:bg-yellow-500 transition shadow-xl transform hover:scale-105">
+            <div class="mb-8 flex justify-center flex-wrap gap-3">
+                <span class="text-sm font-medium bg-golden text-gray-900 px-3 py-1 rounded-full shadow-md">Classic Westerns</span>
+                <span class="text-sm font-medium bg-gray-600 text-gray-100 px-3 py-1 rounded-full shadow-md">Modern Day Gems</span>
+            </div>
+            
+            <a href="classic_list.html" class="inline-block px-8 py-3 text-lg font-bold bg-golden text-gray-900 rounded-lg shadow-xl hover:bg-yellow-400 transition transform hover:scale-105">
                 Browse All Westerns
             </a>
+            
         </div>
-
     </main>
-    
-    <footer class="bg-gray-900 border-t border-gray-700 mt-auto py-4 text-center text-sm text-gray-500">
-        © 2025 Best Western Movies Collection. All content is for demonstration purposes.
+
+    <footer class="py-8 bg-black/90 border-t border-gray-700 text-center text-gray-500">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>&copy; 2025 Best Western Movies Collection. All content is for demonstration purposes.</p>
+        </div>
     </footer>
 
 </body>
