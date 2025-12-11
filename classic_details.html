@@ -4,9 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="page-title">Loading Details...</title>
-    <!-- Load Tailwind CSS -->
+
+    <meta property="og:type" content="video.movie" id="og-type">
+    <meta property="og:title" content="Western Movie Vault" id="og-title">
+    <meta property="og:description" content="A classic Western film." id="og-description">
+    <meta property="og:image" content="[DEFAULT IMAGE URL]" id="og-image">
+    <meta property="og:url" content="[YOUR BASE URL]" id="og-url">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Custom Styles for Dark Theme */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #0d1117; /* Dark GitHub-like background */
@@ -23,7 +30,7 @@
             object-fit: cover;
             aspect-ratio: 2 / 3;
         }
-        /* Style for the responsive video container */
+        /* Style for the responsive 16:9 video container */
         .video-container {
             position: relative;
             width: 100%;
@@ -45,29 +52,26 @@
 </head>
 <body class="min-h-screen">
 
-    <!-- Header & Navigation -->
-   <header class="bg-[#161b22] shadow-xl sticky top-0 z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <h1 class="text-3xl font-extrabold text-classic-blue">
-                <a href="classic_list.html" class="hover:text-sky-400 transition">Classic Vault</a>
-            </h1>
-            <nav class="flex space-x-6">
-                <a href="classic_list.html" class="text-gray-400 hover:text-classic-blue transition duration-200 p-2 rounded-lg">Westerns</a>
-            </nav>
-        </div>
-    </header>
+    <header class="bg-[#161b22] shadow-xl sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <h1 class="text-3xl font-extrabold text-classic-blue">
+                <a href="classic_list.html" class="hover:text-sky-400 transition">Classic Vault</a>
+            </h1>
+            <nav class="flex space-x-6">
+                <a href="classic_list.html" class="text-gray-400 hover:text-classic-blue transition duration-200 p-2 rounded-lg">Westerns</a>
+            </nav>
+        </div>
+    </header>
 
-        <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
-                <a href="classic_list.html" class="flex items-center text-classic-blue hover:text-sky-400 mb-8 transition">
-            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-            Back to Westerns
-        </a>
+        <a href="classic_list.html" class="flex items-center text-classic-blue hover:text-sky-400 mb-8 transition font-semibold">
+            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            Back to Westerns
+        </a>
 
-        <!-- Video Player Section (New) -->
         <section id="video-player-section" class="mb-8"></section>
 
-        <!-- Detail Container (Content dynamically injected here) -->
         <section id="detail-container" class="bg-[#161b22] p-6 md:p-10 rounded-xl card-shadow flex flex-col md:flex-row gap-8">
             <div class="w-full text-center py-20">
                 <h2 class="text-3xl font-bold">Loading Details...</h2>
@@ -77,14 +81,10 @@
 
     </main>
 
-    <!-- JavaScript for Dynamic Content Loading -->
     <script>
         // --- STEP 1: EMBEDDED DATA (SYNCHRONIZED) ---
-        // NOTE: This data MUST match classic_list.html exactly, plus the videoEmbedHtml.
-       // --- STEP 1: EMBEDDED DATA (SYNCHRONIZED) ---
-        // NOTE: This data MUST match classic_list.html exactly, plus the videoEmbedHtml.
-        const CLASSIC_CATALOG = {
-            
+        const CLASSIC_CATALOG = {
+            
             "Pat_Garrett_Billy_the_Kid": {
                 title: "Pat Garrett And Billy the Kid",
                 year: 1973,
@@ -138,7 +138,7 @@
                 description: "In the old west, a man becomes a Sheriff just for the pay, figuring he can decamp if things get tough. In the end, he uses ingenuity instead.",
                 videoEmbedHtml: '<iframe class="w-full h-full" src="https://ok.ru/videoembed/9347718843038" title="Caligula Trailer" frameborder="0" allowfullscreen></iframe>'
             },
-              "The_Spikes_Gang": {
+             "The_Spikes_Gang": {
                 title: "The Spikes Gang",
                 year: 1974,
                 type: "Western",
@@ -195,7 +195,7 @@
                 description: "Kanning is an ex-bounty hunter who decides to buy the town saloon where Donnie works as a whore. Carver, who has a bad history with Kanning from his bounty hunting days, rides into town to register some land deeds.",
                 videoEmbedHtml: '<iframe class="w-full h-full" src="https://ok.ru/videoembed/8974781123110" title="Caligula Trailer" frameborder="0" allowfullscreen></iframe>'
             },
-              "Stagecoach_COLORIZED": {
+             "Stagecoach_COLORIZED": {
                 title: "Stagecoach_COLORIZED",
                 year:1939,
                 type: "Western",
@@ -251,7 +251,7 @@
                 description: "Billy the Kid and his band of outlaws are pursued across New Mexico territory by Sheriff Pat Garrett, who the young gunslingers must face-off with if they are to reach the safety of the border.",
                 videoEmbedHtml: '<iframe class="w-full h-full" src="https://ok.ru/videoembed/7463099828774" title="Young Guns 2" frameborder="0" allowfullscreen></iframe>'
             },
-               "Shane": {
+              "Shane": {
                 title: "Shane (1953) ",
                 year:1953,
                 type: "Western",
@@ -308,14 +308,19 @@
                 videoEmbedHtml: '<iframe class="w-full h-full" src="https://ok.ru/videoembed/6877303015974" title="Caligula Trailer" frameborder="0" allowfullscreen></iframe>'
             },
             
-
-        };
-        // -----------------------------
+        };
+        // -----------------------------
         
-
         function getMovieIdFromUrl() {
             const params = new URLSearchParams(window.location.search);
             return params.get('id'); 
+        }
+
+        function updateMetaTag(id, content) {
+            const tag = document.getElementById(id);
+            if (tag) {
+                tag.setAttribute('content', content);
+            }
         }
 
         async function renderDetails() {
@@ -339,8 +344,16 @@
                 return;
             }
 
-            // Update the browser tab title
-            pageTitleElement.textContent = `${content.title} (${content.year}) | Classic Vault`;
+            // --- Dynamic Metadata Update (IMPROVEMENT) ---
+            const fullTitle = `${content.title} (${content.year}) | Classic Vault`;
+            const currentUrl = window.location.href; 
+            
+            pageTitleElement.textContent = fullTitle;
+            updateMetaTag('og-title', content.title);
+            updateMetaTag('og-description', content.description);
+            updateMetaTag('og-image', content.posterUrl);
+            updateMetaTag('og-url', currentUrl);
+            // ---------------------------------------------
             
             // --- Video Player Logic ---
             if (content.videoEmbedHtml) {
@@ -359,27 +372,22 @@
             
             // Generate the HTML for the details (Poster and Description)
             container.innerHTML = `
-                <!-- Poster Column -->
                 <div class="md:w-1/3 flex-shrink-0">
                     <img src="${content.posterUrl}" 
-                         alt="Poster for ${content.title}" 
-                         class="detail-poster w-full h-auto rounded-lg shadow-xl"
-                         onerror="this.onerror=null;this.src='https://placehold.co/300x450/4B0000/FFF?text=Poster+Failed+to+Load'">
+                        alt="Poster for ${content.title}" 
+                        class="detail-poster w-full h-auto rounded-lg shadow-xl"
+                        onerror="this.onerror=null;this.src='https://placehold.co/300x450/4B0000/FFF?text=Poster+Failed+to+Load'">
                 </div>
 
-                <!-- Details Column -->
                 <div class="md:w-2/3">
                     <h2 class="text-5xl font-extrabold text-white mb-2">${content.title}</h2>
                     <p class="text-2xl font-light text-classic-blue mb-4">${content.year} | ${content.type}</p>
                     
                     <div class="space-y-4 text-lg text-gray-300">
-                        <!-- Description -->
                         <p class="border-l-4 border-classic-blue pl-4 italic bg-[#1f252c] p-3 rounded-md">${content.description}</p>
                         
                         <div class="pt-4 text-sm text-gray-400">
-                            <!-- Placeholder for more detail (e.g., Cast, Director) -->
-                            <!--<p>More details like Director and Cast would go here in a larger database.</p>-->
-                        </div>
+                            </div>
                     </div>
                 </div>
             `;
